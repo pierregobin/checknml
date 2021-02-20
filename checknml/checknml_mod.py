@@ -3,14 +3,18 @@ from lark import Lark
  
 pdg_parser=Lark('''start:  statement+
   statement :  memory
+            | io_interface
 
   memory: MEM ID  "[" range "]" ";"  -> mem_simple
         | MEM ID "[" range "]" code_block -> mem_code
 
 
-  range : NUMBER ".." NUMBER
-        | NUMBER
+  range : (NUMBER|ID) ".." (NUMBER|ID)
+        | (NUMBER|ID)
   code_block : "{"  instructions "}"
+  io_interface : IO ID "(" param_list ")" code_block
+  IO : "io_interface"
+  param_list : ID ("," ID)*
   INPORT : "inport" 
   OUTPORT : "outport" 
   port_declar : INPORT ID ";" | OUTPORT ID ";"

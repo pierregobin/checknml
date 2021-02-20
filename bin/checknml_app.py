@@ -21,7 +21,7 @@ print(tree.pretty())
 for i in tree.iter_subtrees():
     print (i)
     print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
-for d in ["MEM","ID","memory","range","mem_code","mem_simple"]:
+for d in ["MEM","ID","memory","range","mem_code","mem_simple","io_interface"]:
     print ("keyword " + d + " >>>>")
     for t in (tree.find_data(d)):
         print(t.children)
