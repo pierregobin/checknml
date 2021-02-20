@@ -4,8 +4,8 @@ from lark import Lark
 pdg_parser=Lark('''start:  statement+
   statement :  memory
 
-  memory: MEM ID  "[" range "]" ";"
-      | MEM ID "[" range "]" code_block
+  memory: MEM ID  "[" range "]" ";"  -> mem_simple
+        | MEM ID "[" range "]" code_block -> mem_code
 
 
   range : NUMBER ".." NUMBER
