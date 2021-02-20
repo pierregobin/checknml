@@ -12,9 +12,13 @@ pdg_parser=Lark('''start:  statement+
   range : (NUMBER|ID) ".." (NUMBER|ID)
         | (NUMBER|ID)
   code_block : "{"  instructions "}"
-  io_interface : IO ID "(" param_list ")" code_block
+  io_interface : IO ID "(" param_list ")" "{" memory* port* process* "}"
   IO : "io_interface"
   param_list : ID ("," ID)*
+
+  port : (INPORT|OUTPORT) ID ";"
+  process : PROCESS  "(" ")" code_block
+  PROCESS : /process_[a-zA-Z_0-9]+/
   INPORT : "inport" 
   OUTPORT : "outport" 
   port_declar : INPORT ID ";" | OUTPORT ID ";"
