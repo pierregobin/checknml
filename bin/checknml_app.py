@@ -17,13 +17,7 @@ elif args.file != None:
     f.close()
 
 tree= checknml_mod.pdg_parser.parse(s)
-print(tree.pretty())
-for i in tree.iter_subtrees():
-    print (i)
-    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
-for d in ["MEM","ID","memory","range","mem_code","mem_simple","io_interface"]:
-    print ("keyword " + d + " >>>>")
-    for t in (tree.find_data(d)):
-        print(t.children)
-        print("==========\n")
+print(tree)
+
+checknml_mod.showPosition().visit_topdown(tree)
 
